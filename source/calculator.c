@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define KEY "Enter the calculator Operation you want to do:"
 
@@ -12,7 +13,7 @@ void division();
 void modulus();
 void power();
 int factorial();
-int calculator_operations();
+void calculator_operations();
 
 // Start of Main Program
 int main()
@@ -26,13 +27,14 @@ int main()
     while(x)
     {
         printf("\n");
-        printf("%s : ", KEY);
+        printf("%s", KEY);
 
-        Calc_oprm = getche();
+        Calc_oprm = getchar();
 
         switch(Calc_oprm)
         {
-            case '+': addition();break;
+            case '+': addition();
+                      break;
             case '-': subraction();break;
             case '*': multiplication();break;
             case '/': division();break;
@@ -43,7 +45,9 @@ int main()
             case'h': calculator_operations();break;
             case 'Q':
             case 'q': exit(0);break;
-            default: system("clear");
+            case 'C':
+            case 'c': system("clear");calculator_operations();break;
+            //default: system("clear");
 
             printf("\n**********You have enterede unavailable option");
             printf("**********\n");
@@ -65,6 +69,7 @@ void calculator_operations()
 
     printf("****** Pres 'Q' or 'q' to quit");
     printf("the program ******\n");
+    printf("***** Press 'H' or 'h' to display ");
     printf("below options *****\n\n");
     printf("Enter 'C' or 'c' to clear the screen and");
     printf(" display avaible option \n\n");
@@ -89,7 +94,7 @@ void addition()
     while(k<n)
     {
         scanf("%d", &number);
-        total += number;
+        total = total + number;
         k++;
     }
     printf("Sum of %d numbers = %d\n", n, total);
@@ -138,5 +143,48 @@ void modulus()
     printf("\nPlease enter first number: ");
     scanf("%d", &a);
     printf("Please enter second number: ");
-    scanf("")
+    scanf("%d", &b);
+    d = a%b;
+    printf("\nModulus of entered numbers = %d\n", d);
+}
+
+void power()
+{
+    double a, num, p;
+
+    printf("\nEnter two numbers to find the power.\n");
+    printf("Number: ");
+    scanf("%lf", &a);
+    printf("Power: ");
+    scanf("%lf", &num);
+
+    p = pow(a, num);
+
+    printf("\n%lf to find power %lf = %lf \n", a, num, p);
+}
+
+int factorial()
+{
+    int fact = 1, num;
+
+    printf("\nEnter a number to find factorial: ");
+    scanf("%d", &num);
+
+    if (num < 0)
+    {
+        printf("\nPlease enter a positive number to");
+        printf(" find factorial and try again.\n");
+        printf("\nFactorial can't be found for negative");
+        printf(" values. It can be only positive or 0\n");
+
+        return (1);
+    }
+
+    for (int i = 1; i <= num; i++)
+        fact *= i;
+
+    printf("\n");
+    printf("Factorial of entered number %d is: %d\n", num, fact);
+
+    return (0);
 }
