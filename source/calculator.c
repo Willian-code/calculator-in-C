@@ -33,8 +33,7 @@ int main()
 
         switch(Calc_oprm)
         {
-            case '+': addition();
-                      break;
+            case '+': addition();break;
             case '-': subraction();break;
             case '*': multiplication();break;
             case '/': division();break;
@@ -42,9 +41,9 @@ int main()
             case '!': factorial();break;
             case '^': power();break;
             case 'H':
-            case'h': calculator_operations();break;
+            case 'h': calculator_operations();break;
             case 'Q':
-            case 'q': exit(0);break;
+            case 'q': return (0);break;
             case 'C':
             case 'c': system("clear");calculator_operations();break;
             //default: system("clear");
